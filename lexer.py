@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def si (cadena):
  estado_actual='A'
  estado_final=['F']
@@ -26,3 +27,25 @@ def sino (cadena):
     print('exito')
   else:
     print('no exito')
+=======
+def afd(cadena):
+    estado_actual = 0
+    estados_finales=[3,2]
+    for caracter in cadena:
+        if estado_actual == 0 and caracter =='a':
+            estado_actual = 1
+        elif estado_actual == 0 and caracter =='b':
+            estado_actual = 0
+        elif estado_actual == 0 and caracter == 'c':
+            estado_actual = 0
+    
+    if estado_actual in estados_finales:
+        print('la cadena es aceptada')
+    else:
+        print('cadena no aceptada')
+        
+        
+afd('aabcaaabc')
+
+
+>>>>>>> 3187815a6f931de28e9f59e2ba4d4594fde84f43
