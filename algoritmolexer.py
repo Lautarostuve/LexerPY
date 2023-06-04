@@ -64,4 +64,12 @@ def lexer(codigo_fuente):
                     
             posicion_actual = posicion_actual + 1
             
+        if len(posibles_tokens) == 0:
+            print('error:token desconocido' + lexema)
+        
+        un_tipo_de_token = posibles_tokens[0]
+        token1 = (un_tipo_de_token, lexema)
+        tokens.append(token1)
+    
+    return tokens
             
