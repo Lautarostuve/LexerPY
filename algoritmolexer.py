@@ -2,9 +2,10 @@ ESTADO_FINAL="Estado final"
 ESTADO_TRAMPA="Estado trampa"
 ESTADO_NO_FINAL="Estado aceptado"
 
-TOKEN=[("tokenid",automataid),("tokennum",automatanum),
-       ("tokenpalabrar",automatapalabrar),("tokenoprel",automataoprel),
-       ("tokenopmat",automatamat), ("tokensigno",automatasigno)]
+TOKEN=[("token_si",automatasi),("token_sino",automatasino),("token_entonces",automataentonces),("token_finsi",automatafinsi)
+       ("token_finfunc",automatafinfunc),("token_func",automatafunc),("token_repetir",automatarepetir),("token_hasta",automatahasta)
+       ("token_leer",automataleer),("token_mostrar",automatamostrar),("token_id", automataid),("token_num", automatanum),
+       ("token_oprel", automataoprel), ("token_opmat", automatamat), ("token_signo", automatasigno)]
        
 #ejemplo de automota facil
 
@@ -33,20 +34,56 @@ def automataid(lexema):
 #hacer todos los automatas
 
 #automata de palabras reservadas
-def automatapalabrar(lexema):
+def automatasi(lexema):
     estado = 0
     estados_finales = [2,4,12,17,24,20,31,36,40,47]
     for caracter in lexema:
         if estado == 0 and caracter == 's':
             estado = 1
         elif estado == 1 and caracter == 'i':
-            estado = 2 
-        elif estado == 2 and caracter == 'n':
+            estado = 2
+            
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+def automatasino(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:
+        if estado == 0 and caracter == 's':
+            estado = 1
+        elif estado == 1 and caracter == 'i':
+            estado = 2     
+        elif  estado == 2 and caracter == 'n':
             estado = 3 
         elif estado == 3 and caracter == 'o':
             estado = 4
-            
-        elif estado == 0 and caracter == 'e':
+
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+
+def automataentonces(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:            
+        if estado == 0 and caracter == 'e':
             estado = 5
         elif estado == 5 and caracter == 'n':
             estado = 6
@@ -62,8 +99,25 @@ def automatapalabrar(lexema):
             estado = 11
         elif estado == 11  and caracter == 's':
             estado = 12
-            
-        elif estado == 0 and caracter == 'f':
+        
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+        
+        
+def automatafinsi(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:             
+        if estado == 0 and caracter == 'f':
             estado = 13
         elif estado == 13 and caracter == 'i':
             estado = 14
@@ -73,7 +127,28 @@ def automatapalabrar(lexema):
             estado = 16
         elif estado == 16 and caracter == 'i':
             estado = 17
-            
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+        
+def automatafinfunc(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:
+        if estado == 0 and caracter == 'f':
+            estado = 13
+        elif estado == 13 and caracter == 'i':
+            estado = 14
+        elif estado == 14 and caracter == 'n':
+            estado = 15            
         elif estado == 15 and caracter == 'f':
             estado = 21
         elif estado == 21 and caracter == 'u':
@@ -82,8 +157,22 @@ def automatapalabrar(lexema):
             estado = 23
         elif estado == 23 and caracter == 'c':
             estado = 24
-            
-        elif estado == 0 and caracter == 'f':
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+def automatafunc(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:     
+        if estado == 0 and caracter == 'f':
             estado =  13
         elif estado == 13 and caracter == 'u':
             estado = 18   
@@ -91,8 +180,22 @@ def automatapalabrar(lexema):
             estado = 19   
         elif estado == 19 and caracter == 'c':
             estado = 20
-            
-        elif estado == 0  and caracter == 'r':
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+def automatarepetir(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:           
+        if estado == 0  and caracter == 'r':
             estado = 25
         elif estado == 25  and caracter == 'e':
             estado = 26
@@ -106,8 +209,23 @@ def automatapalabrar(lexema):
             estado = 30
         elif estado == 30  and caracter == 'r':
             estado = 31
-            
-        elif estado == 0  and caracter == 'h':
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+    
+def automatarepetir(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:          
+        if estado == 0  and caracter == 'h':
             estado = 32
         elif estado == 32 and caracter == 'a':
             estado = 33
@@ -117,8 +235,22 @@ def automatapalabrar(lexema):
             estado = 35
         elif estado == 35 and caracter == 'a':
             estado = 36
-            
-        elif estado == 0 and caracter == 'l':
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+def automataleer(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:         
+        if estado == 0 and caracter == 'l':
             estado = 37
         elif estado == 37 and caracter == 'e':
             estado = 38
@@ -126,8 +258,22 @@ def automatapalabrar(lexema):
             estado = 39
         elif estado == 39 and caracter == 'r':
             estado = 40
-            
-        elif estado == 0 and caracter == 'm':
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    if estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+def automataleer(lexema):
+    estado = 0
+    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    for caracter in lexema:     
+        if estado == 0 and caracter == 'm':
             estado = 41
         elif estado == 41  and caracter == 'o':
             estado = 42
@@ -161,7 +307,7 @@ def lexer(codigo_fuente):
     posicion_actual = 0
     while posicion_actual < len(codigo_fuente):
         while codigo_fuente[posicion_actual].isspace():
-            posicion_actual = posicion_actual+1
+            posicion_actual = posicion_actual + 1
         
         comienzo = posicion_actual
         posibles_tokens = []
@@ -175,10 +321,10 @@ def lexer(codigo_fuente):
             posibles_tokens = posibles_tokens_1mas
             posibles_tokens_1mas = []
             
-            for (un_tipo_de_token,afd) in TOKEN:
+            for (un_tipo_de_token,afd) in TOKEN: #corre todos los afd para formar los tokens
                 simulacion_afd = afd(lexema)
                 if simulacion_afd == ESTADO_FINAL:
-                    posibles_tokens_1mas.append(un_tipo_de_token)
+                    posibles_tokens_1mas.append(un_tipo_de_token) #agrega el token al final de la lista
                     todos_en_estado_trampa= False
                 elif simulacion_afd == ESTADO_NO_FINAL:
                     todos_en_estado_trampa= False
