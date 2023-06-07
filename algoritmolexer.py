@@ -13,12 +13,10 @@ def automataid(lexema):
     estado = 0 #actual
     estado_final = [1] #listadeestadosfinales
     for caracter in lexema:
-        if estado == 0 and caracter =='a':
+        if estado == 0 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z']:
             estado = 1
-        elif estado == 0 and caracter =='b':
-            estado = 0
-        elif estado == 0 and caracter == 'c':
-            estado = 0
+        elif estado== 1 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z',1,2,3,4,5,6,7,8,9,0]:
+            estado=1
         else:
             estado = -1
             break #llega a estado trampa
@@ -26,6 +24,7 @@ def automataid(lexema):
     if estado == -1:
         return ESTADO_TRAMPA       
     if estado in estado_final:
+        print("exito")
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -339,4 +338,3 @@ def lexer(codigo_fuente):
         tokens.append(token1)
     
     return tokens
-            
