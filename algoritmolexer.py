@@ -23,7 +23,7 @@ def automataid(lexema):
     
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estado_final:
+    elif estado in estado_final:
         print("exito")
         return ESTADO_FINAL
     else:
@@ -48,7 +48,7 @@ def automatasi(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -72,7 +72,7 @@ def automatasino(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -105,7 +105,7 @@ def automataentonces(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -132,7 +132,7 @@ def automatafinsi(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -162,7 +162,7 @@ def automatafinfunc(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -185,7 +185,7 @@ def automatafunc(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -214,7 +214,7 @@ def automatarepetir(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -240,7 +240,7 @@ def automatarepetir(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -263,7 +263,7 @@ def automataleer(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
@@ -293,7 +293,7 @@ def automataleer(lexema):
 
     if estado == -1:
         return ESTADO_TRAMPA       
-    if estado in estados_finales:
+    elif estado in estados_finales:
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
