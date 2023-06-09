@@ -31,7 +31,67 @@ def automataid(lexema):
     
     
 #hacer todos los automatas
+def automatanum(lexema):
+    estado = 0 
+    estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
+    for caracter in lexema:
+        if estado == 0 and caracter in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+            estado = 48
+        elif estado == 48 and caracter in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+            estado == 48
+        else:
+            estado = -1
+            break
+    
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL  
+    
+def automataoprel(lexema):
+    estado = 0
+    estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
+    for caracter in lexema:
+        if estado == 0 and caracter == '>':                 #Nose si esta bien, tome como estado final cada posible op de relacion
+            estado = 51
+        elif estado == 50 and caracter == '=':                 
+            estado = 51
+        else:
+            estado =-1
+            break
+        
+        if estado == 0 and caracter == '<':
+            estado = 51
+        elif estado == 50 and caracter == '=':
+            estado = 51
+        else:
+            estado =-1
+            break
+        
+        if estado == 0 and caracter == '=':
+            estado = 49
+        elif estado == 49 and caracter == '=':
+            estado = 51
+        else:
+            estado =-1
+            break
 
+        if estado = 0 and caracter == '!':
+            estado = 50
+        elif estado == 50 and caracter == '=':
+            estado = 51
+        else:
+            estado =-1
+            break  
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
 #automata de palabras reservadas
 def automatasi(lexema):
     estado = 0
