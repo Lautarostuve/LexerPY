@@ -15,7 +15,7 @@ def automataid(lexema):
     for caracter in lexema:
         if estado == 0 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z']:
             estado = 1
-        elif estado== 1 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z',1,2,3,4,5,6,7,8,9,0]:
+        elif estado== 1 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z','1','2','3','4','5','6','7','8','9','0']:
             estado=1
         else:
             estado = -1
@@ -24,7 +24,6 @@ def automataid(lexema):
     if estado == -1:
         return ESTADO_TRAMPA       
     elif estado in estado_final:
-        print("exito")
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
