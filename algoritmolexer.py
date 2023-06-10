@@ -16,7 +16,8 @@ def automataid(lexema):
             break #llega a estado trampa
     
     if estado == -1:
-        return ESTADO_TRAMPA       
+        return ESTADO_TRAMPA
+           
     elif estado in estado_final:
         return ESTADO_FINAL
     else:
@@ -367,11 +368,104 @@ def automataequal(lexema):
     else:
         return ESTADO_NO_FINAL
     
- 
+def automataparentesis1(lexema):
+    estado = 0
+    estados_finales = [1]
+    for caracter in lexema:     
+        if estado == 0 and caracter == ')':
+            estado = 1
+        else:
+            estado =-1
+            break
+        
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+def automataparentesis2(lexema):
+    estado = 0
+    estados_finales = [1]
+    for caracter in lexema:     
+        if estado == 0 and caracter == '(':
+            estado = 1
+        else:
+            estado =-1
+            break
+        
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+
+
+def automatapuntoycoma(lexema):
+    estado = 0
+    estados_finales = [1]
+    for caracter in lexema:     
+        if estado == 0 and caracter == ';':
+            estado = 1
+        else:
+            estado =-1
+            break
+        
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+
+def automataopsuma(lexema):
+    estado = 0
+    estados_finales = [1]
+    for caracter in lexema:     
+        if estado == 0 and caracter == '+':
+            estado = 1
+        elif estado == 0 and caracter =='-':
+            estado =1
+        else:
+            estado =-1
+            break
+        
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+def automataopmult(lexema):
+    estado = 0
+    estados_finales = [1]
+    for caracter in lexema:     
+        if estado == 0 and caracter == '*':
+            estado = 1
+        else:
+            estado =-1
+            break
+        
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+            
+            
+            
+            
+            
 TOKEN=[("token_si",automatasi),("token_sino",automatasino),("token_entonces",automataentonces),("token_finsi",automatafinsi),
        ("token_finfunc",automatafinfunc),("token_func",automatafunc),("token_repetir",automatarepetir),("token_hasta",automatahasta),
        ("token_leer",automataleer),("token_mostrar",automatamostrar),("token_equal",automataequal),("token_id", automataid),
-       ("token_num", automatanum),("token_oprel", automataoprel)]  
+       ("token_num", automatanum),("token_oprel", automataoprel),("token_parentesis1", automataparentesis1),("token_parentesis2",automataparentesis2),
+       ("token_puntoycoma", automatapuntoycoma),("token_opsuma",automataopsuma),("token_opmult",automataopmult)]  
 
                     
 #algoritmo principal del lexer:
@@ -416,4 +510,4 @@ def lexer(codigo_fuente):
 
 
 
-lexer ('si ad2 4 entonces finsi')
+lexer('si')
