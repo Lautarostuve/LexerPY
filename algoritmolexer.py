@@ -51,34 +51,30 @@ def automataoprel(lexema):
             estado = 51                                     #no entiendo bien lo de los relacionales, tampoco el equal, hay que preguntar
         elif estado == 50 and caracter == '=':                 
             estado = 51
-        else:
-            estado =-1
-            break
-        
-        if estado == 0 and caracter == '<':
+    
+        elif estado == 0 and caracter == '<':
             estado = 51
         elif estado == 50 and caracter == '=':
             estado = 51
-        else:
-            estado =-1
-            break
-        
-        if estado == 0 and caracter == '=':
-            estado = 49
-        elif estado == 49 and caracter == '=':
-            estado = 51
-        else:
-            estado =-1
-            break
 
         if estado == 0 and caracter == '!':
             estado = 50
         elif estado == 50 and caracter == '=':
             estado = 51
-        else:
-            estado =-1
-            break  
 
+        if estado == 0 and caracter == '=':
+            estado = 51
+
+        if estado == 0 and caracter == '>':
+            estado = 51
+        
+        if estado == 0 and caracter == '<':
+            estado = 51
+        
+        else:
+            estado = -1
+            break
+        
     if estado == -1:
         return ESTADO_TRAMPA       
     elif estado in estados_finales:
