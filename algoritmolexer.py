@@ -45,32 +45,26 @@ def automatanum(lexema):
     
 def automataoprel(lexema):
     estado = 0
-    estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
+    estados_finales = [1,2]
     for caracter in lexema:
-        if estado == 0 and caracter == '>':                 #Nose si esta bien, tome como estado final cada posible op de relacion
-            estado = 51                                     #no entiendo bien lo de los relacionales, tampoco el equal, hay que preguntar
-        elif estado == 50 and caracter == '=':                 
-            estado = 51
-    
+        if estado == 0 and caracter == '=':                 #Nose si esta bien, tome como estado final cada posible op de relacion
+            estado = 1
+                                                                
+        elif estado == 0 and caracter == '>':
+            estado = 2
+            
         elif estado == 0 and caracter == '<':
-            estado = 51
-        elif estado == 50 and caracter == '=':
-            estado = 51
-
-        if estado == 0 and caracter == '!':
-            estado = 50
-        elif estado == 50 and caracter == '=':
-            estado = 51
-
-        if estado == 0 and caracter == '=':
-            estado = 51
-
-        if estado == 0 and caracter == '>':
-            estado = 51
-        
-        if estado == 0 and caracter == '<':
-            estado = 51
-        
+            estado = 2
+            
+        elif estado == 0 and caracter == '!':
+            estado = 3
+            
+        elif estado == 2 and caracter == '=':
+            estado = 1
+            
+        elif estado == 3 and caracter == '=':
+            estado = 1
+            
         else:
             estado = -1
             break
