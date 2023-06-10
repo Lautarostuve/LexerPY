@@ -2,12 +2,6 @@ ESTADO_FINAL="Estado final"
 ESTADO_TRAMPA="Estado trampa"
 ESTADO_NO_FINAL="Estado aceptado"
 
-TOKEN=[("token_si",automatasi),("token_sino",automatasino),("token_entonces",automataentonces),("token_finsi",automatafinsi)
-       ("token_finfunc",automatafinfunc),("token_func",automatafunc),("token_repetir",automatarepetir),("token_hasta",automatahasta)
-       ("token_leer",automataleer),("token_mostrar",automatamostrar),("token_id", automataid),("token_num", automatanum),
-       ("token_oprel", automataoprel), ("token_opmat", automatamat), ("token_signo", automatasigno)]
-       
-#ejemplo de automota facil
 
 def automataid(lexema):
     estado = 0 #actual
@@ -34,9 +28,9 @@ def automatanum(lexema):
     estado = 0 
     estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
     for caracter in lexema:
-        if estado == 0 and caracter in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+        if estado == 0 and caracter in ['1','2','3','4','5','6','7','8','9','0']:
             estado = 48
-        elif estado == 48 and caracter in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+        elif estado == 48 and caracter in ['1','2','3','4','5','6','7','8','9','0']:
             estado == 48
         else:
             estado = -1
@@ -54,7 +48,7 @@ def automataoprel(lexema):
     estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
     for caracter in lexema:
         if estado == 0 and caracter == '>':                 #Nose si esta bien, tome como estado final cada posible op de relacion
-            estado = 51
+            estado = 51                                     #no entiendo bien lo de los relacionales, tampoco el equal, hay que preguntar
         elif estado == 50 and caracter == '=':                 
             estado = 51
         else:
@@ -77,7 +71,7 @@ def automataoprel(lexema):
             estado =-1
             break
 
-        if estado = 0 and caracter == '!':
+        if estado == 0 and caracter == '!':
             estado = 50
         elif estado == 50 and caracter == '=':
             estado = 51
@@ -91,6 +85,7 @@ def automataoprel(lexema):
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
+    
 #automata de palabras reservadas
 def automatasi(lexema):
     estado = 0
@@ -114,7 +109,7 @@ def automatasi(lexema):
 
 def automatasino(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [4,12,17,24,20,31,36,40,47]
     for caracter in lexema:
         if estado == 0 and caracter == 's':
             estado = 1
@@ -279,7 +274,7 @@ def automatarepetir(lexema):
         return ESTADO_NO_FINAL
     
     
-def automatarepetir(lexema):
+def automatahasta(lexema):
     estado = 0
     estados_finales = [2,4,12,17,24,20,31,36,40,47]
     for caracter in lexema:          
@@ -327,7 +322,7 @@ def automataleer(lexema):
     else:
         return ESTADO_NO_FINAL
     
-def automataleer(lexema):
+def automatamostrar(lexema):
     estado = 0
     estados_finales = [2,4,12,17,24,20,31,36,40,47]
     for caracter in lexema:     
@@ -357,7 +352,38 @@ def automataleer(lexema):
     else:
         return ESTADO_NO_FINAL
     
-                       
+def automataequal(lexema):
+    estado = 0
+    estados_finales = [45]
+    for caracter in lexema:     
+        if estado == 0 and caracter == 'e':
+            estado = 41
+        elif estado == 41  and caracter == 'q':
+            estado = 42
+        elif estado == 42 and caracter == 'u':
+            estado = 43
+        elif estado == 43 and caracter == 'a':
+            estado = 44
+        elif estado == 44 and caracter == 'l':
+            estado = 45
+        else:
+            estado =-1
+            break
+
+    if estado == -1:
+        return ESTADO_TRAMPA       
+    elif estado in estados_finales:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
+    
+ 
+TOKEN=[("token_si",automatasi),("token_sino",automatasino),("token_entonces",automataentonces),("token_finsi",automatafinsi),
+       ("token_finfunc",automatafinfunc),("token_func",automatafunc),("token_repetir",automatarepetir),("token_hasta",automatahasta),
+       ("token_leer",automataleer),("token_mostrar",automatamostrar),("token_equal",automataequal),("token_id", automataid),
+       ("token_num", automatanum),("token_oprel", automataoprel)]  
+
+                    
 #algoritmo principal del lexer:
 
 def lexer(codigo_fuente):
@@ -397,3 +423,7 @@ def lexer(codigo_fuente):
         tokens.append(token1)
     
     return tokens
+
+
+
+lexer ('si ad2 4 entonces finsi')
