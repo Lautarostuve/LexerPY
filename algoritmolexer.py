@@ -508,6 +508,6 @@ def lexer(codigo_fuente):
     
     return tokens
 
-
-
-lexer('si')
+codigo_fuente = "si a entonces b; sino mostrar C;"
+tokens = lexer(codigo_fuente)
+print(tokens)
