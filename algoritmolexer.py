@@ -1,28 +1,6 @@
 ESTADO_FINAL="Estado final"
 ESTADO_TRAMPA="Estado trampa"
 ESTADO_NO_FINAL="Estado aceptado"
-
-
-def automataid(lexema):
-    estado = 0 #actual
-    estado_final = [1] #listadeestadosfinales
-    for caracter in lexema:
-        if estado == 0 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z']:
-            estado = 1
-        elif estado== 1 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z','1','2','3','4','5','6','7','8','9','0']:
-            estado=1
-        else:
-            estado = -1
-            break #llega a estado trampa
-    
-    if estado == -1:
-        return ESTADO_TRAMPA
-           
-    elif estado in estado_final:
-        return ESTADO_FINAL
-    else:
-        return ESTADO_NO_FINAL
-    
     
 #hacer todos los automatas
 def automatanum(lexema):
@@ -456,6 +434,26 @@ def automataopmult(lexema):
         return ESTADO_FINAL
     else:
         return ESTADO_NO_FINAL
+    
+def automataid(lexema):
+    estado = 0 #actual
+    estado_final = [1] #listadeestadosfinales
+    for caracter in lexema:
+        if estado == 0 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z']:
+            estado = 1
+        elif estado== 1 and caracter in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','u','x','w','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','U','X','W','Y','Z','1','2','3','4','5','6','7','8','9','0']:
+            estado=1
+        else:
+            estado = -1
+            break #llega a estado trampa
+    
+    if estado == -1:
+        return ESTADO_TRAMPA
+           
+    elif estado in estado_final:
+        return ESTADO_FINAL
+    else:
+        return ESTADO_NO_FINAL
             
             
             
@@ -485,6 +483,7 @@ def lexer(codigo_fuente):
         
         while not todos_en_estado_trampa:
             todos_en_estado_trampa = True
+            lexema1 = codigo_fuente[comienzo:posicion_actual]
             lexema = codigo_fuente[comienzo:posicion_actual +1] #le paso del codigo fuente al lexema, las palabras desde el comienzo hasta la posicion actual +1
             posibles_tokens = posibles_tokens_1mas
             posibles_tokens_1mas = []
@@ -500,14 +499,14 @@ def lexer(codigo_fuente):
             posicion_actual = posicion_actual + 1
             
         if len(posibles_tokens) == 0:
-            print('error:token desconocido' + lexema)
+            print('error:token desconocido' + lexema1)
         
         un_tipo_de_token = posibles_tokens[0]
-        token1 = (un_tipo_de_token, lexema)
+        token1 = (un_tipo_de_token, lexema1)
         tokens.append(token1)
     
     return tokens
 
-
-
-lexer('si')
+codigo_fuente = "si a entonces b; sino mostrar C;"
+tokens = lexer(codigo_fuente)
+print(tokens)
