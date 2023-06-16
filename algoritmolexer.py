@@ -501,23 +501,14 @@ def lexer(codigo_fuente):
             
             
         if len(posibles_tokens) == 0:
-<<<<<<< HEAD
             print('error:token desconocido' + lexema)
         else:
             posicion_actual = posicion_actual - 1
             un_tipo_de_token = posibles_tokens[0]
             token1 = (un_tipo_de_token, codigo_fuente[comienzo:posicion_actual])
             tokens.append(token1)
-=======
-            print('error:token desconocido' + lexema1)
-        
-        un_tipo_de_token = posibles_tokens[0]
-        token1 = (un_tipo_de_token, lexema1)
-        tokens.append(token1)
->>>>>>> 948734a1effb319cbf45f9d71aadf0d469415a65
-    
     return tokens
 
-codigo_fuente = "4*5entonces si 4+5=10 si variablex"
+codigo_fuente = "4*5entonces si 4+5=10 si 34variablex341314"
 tokens = lexer(codigo_fuente)
 print(tokens)
