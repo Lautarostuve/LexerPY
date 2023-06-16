@@ -483,12 +483,12 @@ def lexer(codigo_fuente):
         lexema = "" #inicia el lexema que pasa a los afd
         todos_en_estado_trampa = False
         
-        while not todos_en_estado_trampa:
+        while not todos_en_estado_trampa and posicion_actual< len(codigo_fuente)+1:
             todos_en_estado_trampa = True
             lexema = codigo_fuente[comienzo:posicion_actual +1] #le paso del codigo fuente al lexema, las palabras desde el comienzo hasta la posicion actual +1
             posibles_tokens = posibles_tokens_1mas
+            lexemapos=lexema
             posibles_tokens_1mas = []
-            
             for (un_tipo_de_token,afd) in TOKEN: #corre todos los afd para formar los tokens
                 simulacion_afd = afd(lexema)
                 if simulacion_afd == ESTADO_FINAL:
@@ -499,15 +499,18 @@ def lexer(codigo_fuente):
                     
             posicion_actual = posicion_actual + 1
             
+            
+            
         if len(posibles_tokens) == 0:
             print('error:token desconocido' + lexema)
-        
-        un_tipo_de_token = posibles_tokens[0]
-        token1 = (un_tipo_de_token, lexema)
-        tokens.append(token1)
+        else:
+            posicion_actual = posicion_actual - 1
+            un_tipo_de_token = posibles_tokens[0]
+            token1 = (un_tipo_de_token, codigo_fuente[comienzo:posicion_actual])
+            tokens.append(token1)
     
     return tokens
 
-codigo_fuente = "si a entonces b; sino mostrar C;"
+codigo_fuente = "4*5entonces si 4+5=10 si variablex"
 tokens = lexer(codigo_fuente)
 print(tokens)
