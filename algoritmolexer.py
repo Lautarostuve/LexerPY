@@ -27,7 +27,7 @@ def automataoprel(lexema):
     estados_finales = [1,2]
     for caracter in lexema:
         if estado == 0 and caracter == '=':                 #Nose si esta bien, tome como estado final cada posible op de relacion
-            estado = 1
+            estado = 3
                                                                 
         elif estado == 0 and caracter == '>':
             estado = 2
@@ -483,10 +483,8 @@ def lexer(codigo_fuente):
         
         while not todos_en_estado_trampa and posicion_actual< len(codigo_fuente)+1:
             todos_en_estado_trampa = True
-            lexema1 = codigo_fuente[comienzo:posicion_actual]
             lexema = codigo_fuente[comienzo:posicion_actual +1] #le paso del codigo fuente al lexema, las palabras desde el comienzo hasta la posicion actual +1
             posibles_tokens = posibles_tokens_1mas
-            lexemapos=lexema
             posibles_tokens_1mas = []
             for (un_tipo_de_token,afd) in TOKEN: #corre todos los afd para formar los tokens
                 simulacion_afd = afd(lexema)
@@ -501,7 +499,8 @@ def lexer(codigo_fuente):
             
             
         if len(posibles_tokens) == 0:
-            print('error:token desconocido' + lexema)
+            print('error:token desconocido' + codigo_fuente[comienzo:posicion_actual-1])
+            break
         else:
             posicion_actual = posicion_actual - 1
             un_tipo_de_token = posibles_tokens[0]
@@ -509,6 +508,33 @@ def lexer(codigo_fuente):
             tokens.append(token1)
     return tokens
 
-codigo_fuente = "4*5entonces si 4+5=10 si 34variablex341314"
-tokens = lexer(codigo_fuente)
+prueba1 = "entonces si 4 + 5 entonces variable finsi" #Por mas que la sintaxis sea incorrecta el lexer debe darnos los tokens de este codigo, pues es en realidad el parcer el encargado de evaluar la sintaxis
+tokens = lexer(prueba1)
+print(tokens)
+prueba2 = "si 123 == 456 entonces variable func finfunc + - > < * leer leer5 repetir hasta finsi equal" #En este buscamos probar que todos los automatas que marcan tokens funcionan
+tokens = lexer(prueba2)
+print(tokens)
+prueba3 = "si123==456entoncesvariablefuncfinfunc+-><*leerleer5repetirhastafinsi" #Lo que ocurre es que hay casos donde si no se ponen espacios nos marcan otros tipos de token
+tokens = lexer(prueba3)
+print(tokens)
+prueba4 = "4*5entonces si 4+5=10 si 1234variable"
+tokens = lexer(prueba4)
+print(tokens)
+prueba5 = "sientonces"
+tokens = lexer(prueba5)
+print(tokens)
+prueba6 = "si entonces"
+tokens = lexer(prueba6)
+print(tokens)
+prueba7 = "repetir variable equal 5 hasta variable == 10"
+tokens = lexer(prueba7)
+print(tokens)
+prueba8 = "4*5entonces si 4+5=10 si variable == 5: variable equal 67 ;"#En este caso tira errores de que hay tokens desconocidos como el = y el :
+tokens = lexer(prueba8)
+print(tokens)
+prueba9 = "si 500*800==0 entonces variable = 6"
+tokens = lexer(prueba9)
+print(tokens)
+prueba10 = "si 500*800==0 entonces variable equal 6"
+tokens = lexer(prueba10)
 print(tokens)
