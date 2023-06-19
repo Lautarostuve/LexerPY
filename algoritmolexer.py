@@ -499,7 +499,7 @@ def lexer(codigo_fuente):
             
             
         if len(posibles_tokens) == 0:
-            print('error:token desconocido' + codigo_fuente[comienzo:posicion_actual-1])
+            print('error:token desconocido' + lexema)
             break
         else:
             posicion_actual = posicion_actual - 1
