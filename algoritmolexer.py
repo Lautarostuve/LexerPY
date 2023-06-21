@@ -500,7 +500,6 @@ def lexer(codigo_fuente):
             
         if len(posibles_tokens) == 0:
             print('error:token desconocido' + lexema)
-            break
         else:
             posicion_actual = posicion_actual - 1
             un_tipo_de_token = posibles_tokens[0]
@@ -517,7 +516,7 @@ print(tokens)
 prueba3 = "si123==456entoncesvariablefuncfinfunc+-><*leerleer5repetirhastafinsi" #Lo que ocurre es que hay casos donde si no se ponen espacios nos marcan otros tipos de token
 tokens = lexer(prueba3)
 print(tokens)
-prueba4 = "4*5entonces si 4+5=10 si 1234variable"
+prueba4 = "4*5entonces si 4+5equal10 si 1234variable"
 tokens = lexer(prueba4)
 print(tokens)
 prueba5 = "sientonces"
@@ -529,7 +528,7 @@ print(tokens)
 prueba7 = "repetir variable equal 5 hasta variable == 10"
 tokens = lexer(prueba7)
 print(tokens)
-prueba8 = "4*5entonces si 4+5=10 si variable == 5: variable equal 67 ;"#En este caso tira errores de que hay tokens desconocidos como el = y el :
+prueba8 = "4*5entonces si 4+10 equal:si variable == 5: variable equal 67 ;"#En este caso tira errores de que hay tokens desconocidos como el :
 tokens = lexer(prueba8)
 print(tokens)
 prueba9 = "si 500*800==0 entonces variable = 6"
