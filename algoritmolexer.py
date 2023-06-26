@@ -5,7 +5,7 @@ ESTADO_NO_FINAL="Estado aceptado"
 #hacer todos los automatas
 def automatanum(lexema):
     estado = 0 
-    estados_finales = [1,2,4,12,17,24,20,31,36,40,47,48,51]
+    estados_finales = [48]
     for caracter in lexema:
         if estado == 0 and caracter in ['1','2','3','4','5','6','7','8','9','0']:
             estado = 48
@@ -26,7 +26,7 @@ def automataoprel(lexema):
     estado = 0
     estados_finales = [1,2]
     for caracter in lexema:
-        if estado == 0 and caracter == '=':                 #Nose si esta bien, tome como estado final cada posible op de relacion
+        if estado == 0 and caracter == '=':                
             estado = 3
                                                                 
         elif estado == 0 and caracter == '>':
@@ -58,7 +58,7 @@ def automataoprel(lexema):
 #automata de palabras reservadas
 def automatasi(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [2]
     for caracter in lexema:
         if estado == 0 and caracter == 's':
             estado = 1
@@ -78,7 +78,7 @@ def automatasi(lexema):
 
 def automatasino(lexema):
     estado = 0
-    estados_finales = [4,12,17,24,20,31,36,40,47]
+    estados_finales = [4]
     for caracter in lexema:
         if estado == 0 and caracter == 's':
             estado = 1
@@ -103,7 +103,7 @@ def automatasino(lexema):
 
 def automataentonces(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [12]
     for caracter in lexema:            
         if estado == 0 and caracter == 'e':
             estado = 5
@@ -137,7 +137,7 @@ def automataentonces(lexema):
         
 def automatafinsi(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [17]
     for caracter in lexema:             
         if estado == 0 and caracter == 'f':
             estado = 13
@@ -163,7 +163,7 @@ def automatafinsi(lexema):
         
 def automatafinfunc(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [24]
     for caracter in lexema:
         if estado == 0 and caracter == 'f':
             estado = 13
@@ -192,7 +192,7 @@ def automatafinfunc(lexema):
     
 def automatafunc(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [20]
     for caracter in lexema:     
         if estado == 0 and caracter == 'f':
             estado =  13
@@ -215,7 +215,7 @@ def automatafunc(lexema):
     
 def automatarepetir(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [31]
     for caracter in lexema:           
         if estado == 0  and caracter == 'r':
             estado = 25
@@ -245,7 +245,7 @@ def automatarepetir(lexema):
     
 def automatahasta(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [36]
     for caracter in lexema:          
         if estado == 0  and caracter == 'h':
             estado = 32
@@ -270,7 +270,7 @@ def automatahasta(lexema):
     
 def automataleer(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [40]
     for caracter in lexema:         
         if estado == 0 and caracter == 'l':
             estado = 37
@@ -293,7 +293,7 @@ def automataleer(lexema):
     
 def automatamostrar(lexema):
     estado = 0
-    estados_finales = [2,4,12,17,24,20,31,36,40,47]
+    estados_finales = [47]
     for caracter in lexema:     
         if estado == 0 and caracter == 'm':
             estado = 41
@@ -424,6 +424,8 @@ def automataopmult(lexema):
     for caracter in lexema:     
         if estado == 0 and caracter == '*':
             estado = 1
+        elif estado == 0 and caracter == '/':
+            estado = 1
         else:
             estado =-1
             break
@@ -501,39 +503,39 @@ def lexer(codigo_fuente):
         if len(posibles_tokens) == 0:
             print('error:token desconocido' + lexema)
         else:
-            posicion_actual = posicion_actual - 1
+            posicion_actual = posicion_actual - 1 #Modificamos la posicion actual para solucionar el problema de que se saltaba un caracter
             un_tipo_de_token = posibles_tokens[0]
             token1 = (un_tipo_de_token, codigo_fuente[comienzo:posicion_actual])
             tokens.append(token1)
     return tokens
 
-prueba1 = "entonces si 4 + 5 entonces variable finsi" #Por mas que la sintaxis sea incorrecta el lexer debe darnos los tokens de este codigo, pues es en realidad el parcer el encargado de evaluar la sintaxis
+prueba1 = "entonces si 4 / 5 entonces variable finsi" #Por mas que la sintaxis sea incorrecta el lexer debe darnos los tokens de este codigo, pues es en realidad el parcer el encargado de evaluar la sintaxis
 tokens = lexer(prueba1)
-print(tokens)
-prueba2 = "si 123 == 456 entonces variable func finfunc + - > < * leer leer5 repetir hasta finsi equal" #En este buscamos probar que todos los automatas que marcan tokens funcionan
+print("prueba1",tokens)
+prueba2 = "si 123 == 456 entonces variable func finfunc + - > < * / leer leer5 repetir hasta finsi equal" #En este buscamos probar que todos los automatas que marcan tokens funcionan
 tokens = lexer(prueba2)
-print(tokens)
+print("prueba2",tokens)
 prueba3 = "si123==456entoncesvariablefuncfinfunc+-><*leerleer5repetirhastafinsi" #Lo que ocurre es que hay casos donde si no se ponen espacios nos marcan otros tipos de token
 tokens = lexer(prueba3)
-print(tokens)
+print("prueba3",tokens)
 prueba4 = "4*5entonces si 4+5equal10 si 1234variable"
 tokens = lexer(prueba4)
-print(tokens)
+print("prueba4",tokens)
 prueba5 = "sientonces"
 tokens = lexer(prueba5)
-print(tokens)
+print("prueba5",tokens)
 prueba6 = "si entonces"
 tokens = lexer(prueba6)
-print(tokens)
+print("prueba6",tokens)
 prueba7 = "repetir variable equal 5 hasta variable == 10"
 tokens = lexer(prueba7)
-print(tokens)
+print("prueba7",tokens)
 prueba8 = "4*5entonces si 4+10 equal:si variable == 5: variable equal 67 ;"#En este caso tira errores de que hay tokens desconocidos como el :
 tokens = lexer(prueba8)
-print(tokens)
+print("prueba8",tokens)
 prueba9 = "si 500*800==0 entonces variable = 6"
 tokens = lexer(prueba9)
-print(tokens)
+print("prueba9",tokens)
 prueba10 = "si 500*800==0 entonces variable equal 6"
 tokens = lexer(prueba10)
-print(tokens)
+print("prueba10",tokens)
