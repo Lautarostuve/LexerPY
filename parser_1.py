@@ -1,15 +1,24 @@
-no_terminales = ['noterminal1',...,'noterminalp']
-terminales = tokens_posibles
+no_terminales = ['Program','ListaSentencias', 'Sentencia', 'SentenciaSi',
+                 'SentenciaRepetir', 'SentenciaAsig', 'SentenciaLeer', 'SentenciaMostrar',
+                 'SentenciaFun', 'Proc', 'ListaPar', 'Expression', 'Expresion2', 'Factor',
+                 'Termino']
+
+terminales = ["token_si","token_sino","token_entonces","token_finsi","token_finfunc",
+              "token_func","token_repetir","token_hasta","token_leer","token_mostrar",
+              "token_equal","token_id","token_num","token_oprel","token_parentesis1",
+              "token_parentesis2","token_puntoycoma","token_opsuma","token_opmult"]
 
 producciones = {
-    'noterminal1':[['token1,Noterminalj',...,'tokenN'],...,[ladoderechok1]]
-    ...
-    'noterminalp':[[ladoderecho1],...,[ladoderechop]]
+    'Program':[['ListaSentencias']],
+    'ListaSentencias' : [['ListaSentencias',"token_puntoycoma",'Sentencia'],['Sentencia']],
+    
+    'noterminalp':[[ladoderecho1],...,[ladoderechop]],
     
 }
+# HOLAAAAA
 
 
-def parser(lista_tokens):
+def parser(lista_tokens):                   #la lista de tokens viene del lexer
     datos_parser = {
         'tokens': lista_tokens,
         'posicion_indice': 0,
@@ -22,7 +31,7 @@ def parser(lista_tokens):
         if token_actual != 'eof' or datos_parser['error']:
             print('la cadena no pertenece al lenguaje')
             return False
-    
+
     def pni(no_terminal):
         for parteDerecha in producciones[no_terminal]:
             posicion_a_retroceder = datos_parser['posicion_indice']
