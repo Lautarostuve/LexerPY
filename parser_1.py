@@ -144,30 +144,27 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             return False
 
     def pni(no_terminal):
-        'error': False
-        if no_terminal in SD: ## hacer un case para cada produccion, con los simbolos directrices
-            if token_actual == "token_si" :
-                procesar() # LLamar a la parte derecha y hago el procesar
-            
-            
+        terminal = datos_parser['tokens'[datos_parser['posicion_indice']]]
+        parteDerecha = SD [no_terminal[terminal]]           #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
+        procesar(parteDerecha)
         
     
     def procesar(parteDerecha):  #ingresa una produccion
         for simbolo in parteDerecha:
-        token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
-        datos_parser['error']= False
-        if simbolo in terminales:
-            if simbolo == token_actual:
-                datos_parser['posicion_indice'] += 1
-            else:
-                datos_parser['error'] = True
+            token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
+            datos_parser['error']= False
+            if simbolo in terminales:
+                if simbolo == token_actual:
+                    datos_parser['posicion_indice'] += 1
+                else:
+                    datos_parser['error'] = True
                 break
         
-        elif simbolo in no_terminales:
-            pni(simbolo)
-            if datos_parser['error']:
-                break
-            
+            elif simbolo in no_terminales:
+                pni(simbolo)
+                if datos_parser['error']:
+                    break
+                
     return principal()
 
 
