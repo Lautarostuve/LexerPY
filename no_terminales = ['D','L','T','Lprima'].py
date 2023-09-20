@@ -1,3 +1,4 @@
+
 no_terminales = ['D','L','T','Lprima']
 
 terminales = ['int','float','id',',']
@@ -8,9 +9,9 @@ SD = {
     
     'T' : {'int' : ['int'], 'float' : ['float'], 'id' : [], ',' : [], '#' : [] },
     
-    'L' : {'int' : [], 'float' : [], 'id' : ['id', 'Lprima'], ',' : [], '#' : [] },
+    'L' : {'int' : [], 'float' : [], 'id' : ['id','Lprima'], ',' : [], '#' : [] },
     
-    'Lprima' : {'int' : [], 'float' : [], 'id' : [], ',' : ['L'], '#' : [] },
+    'Lprima' : {'int' : [], 'float' : [], 'id' : [], ',' : [',','L'], '#' : [] }
     
     }
 
@@ -34,20 +35,24 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
 
     def pni(no_terminal):
         terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
+        print(terminal)
         parteDerecha = SD[no_terminal][terminal]          #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
+        print(parteDerecha)
         procesar(parteDerecha)
         
     
     def procesar(parteDerecha):  #ingresa una produccion
         for simbolo in parteDerecha:
+            print(simbolo)
             token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
             datos_parser['error']= False
             if simbolo in terminales:
                 if simbolo == token_actual:
                     datos_parser['posicion_indice'] += 1
+                    print ('sumo 1')
                 else:
                     datos_parser['error'] = True
-                break
+                    break
         
             elif simbolo in no_terminales:
                 pni(simbolo)
@@ -60,7 +65,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
 
 parser((['int','2'],['id','i'],[',',','],['id','j'],['#','#']))
 
-parser((['int','2'],['id','i'],['#','#']))
+#parser((['int','2'],['id','i'],['#','#']))
 
 #parteDerecha = SD['L']['id']
 #print (parteDerecha) 

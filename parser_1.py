@@ -23,7 +23,7 @@ SD = {
     'ListaSentenciasPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
                  "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : ["token_puntoycoma", 'Sentencia', 'ListaSentenciasPrima'] , "token_opsuma" : [], "token_opmult" : [] "lambda" : []},
+                "token_puntoycoma" : ["token_puntoycoma", 'Sentencia', 'ListaSentenciasPrima'] , "token_opsuma" : [], "token_opmult" : [], "lambda" : []},
     
     'Sentencia' : {"token_si" : ['SentenciaSi'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : ['SentenciaFun'], "token_repetir" : ['SentenciaRepetir'], "token_hasta" : [], "token_leer" : ['SentenciaLeer'], "token_mostrar" : ['SentenciaMostrar'], "token_equal" : [],
@@ -113,11 +113,9 @@ SD = {
     'TerminoPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
                  "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : ["token_opmult", 'Factor', 'TerminoPrima'], "lambda" : []},
+                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : ["token_opmult", 'Factor', 'TerminoPrima'], "lambda" : []}
             
-                
-
-                
+                        
 }
 # matigay3pa
 
@@ -144,7 +142,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
     
     def procesar(parteDerecha):  #ingresa una produccion
         for simbolo in parteDerecha:
-            token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
+            token_actual = datos_parser['tokens'][datos_parser['posicion_ind]
             datos_parser['error']= False
             if simbolo in terminales:
                 if simbolo == token_actual:
