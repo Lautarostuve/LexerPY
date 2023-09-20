@@ -35,21 +35,21 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
 
     def pni(no_terminal):
         terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
-        print(terminal)
+        #print(terminal)
         parteDerecha = SD[no_terminal][terminal]          #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
-        print(parteDerecha)
+        #print(parteDerecha)
         procesar(parteDerecha)
         
     
     def procesar(parteDerecha):  #ingresa una produccion
         for simbolo in parteDerecha:
-            print(simbolo)
+            #print(simbolo)
             token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
             datos_parser['error']= False
             if simbolo in terminales:
                 if simbolo == token_actual:
                     datos_parser['posicion_indice'] += 1
-                    print ('sumo 1')
+                    #print ('sumo 1')
                 else:
                     datos_parser['error'] = True
                     break
@@ -65,7 +65,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
 
 parser((['int','2'],['id','i'],[',',','],['id','j'],['#','#']))
 
-#parser((['int','2'],['id','i'],['#','#']))
+parser((['int','2'],['id','i'],['#','#']))
 
 #parteDerecha = SD['L']['id']
 #print (parteDerecha) 
