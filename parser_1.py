@@ -9,7 +9,6 @@ terminales = ["token_si","token_sino","token_entonces","token_finsi","token_finf
               "token_func","token_repetir","token_hasta","token_leer","token_mostrar",
               "token_equal","token_id","token_num","token_oprel","token_parentesis1",
               "token_parentesis2","token_puntoycoma","token_opsuma","token_opmult",'#']
-
 SD = { 
     'Program' : {"token_si" : ['ListaSentencias'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                 "token_func" : ['ListaSentencias'], "token_repetir" : ['ListaSentencias'], "token_hasta" : [], "token_leer" : ['ListaSentencias'],
@@ -167,4 +166,7 @@ parser(tokens)
 tokens=lexer("si 6>7 entonces leer id finsi")
 tokens.extend([('#','#')])
 print (tokens)
+parser(tokens)
+tokens=lexer("repetir leer vauxi hasta vauxi > variableprima")
+tokens.extend([('#','#')])
 parser(tokens)
