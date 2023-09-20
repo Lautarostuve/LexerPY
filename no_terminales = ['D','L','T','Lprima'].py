@@ -23,6 +23,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
         'posicion_indice': 0,
         'error': False,     
     }
+    producciones = ['D']
     
     def principal():
         pni('D')
@@ -32,12 +33,14 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             return False
         else: 
             print ('la cadena pertenece')
+            print (producciones)
 
     def pni(no_terminal):
         terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
-        #print(terminal)
+        #print(terminal) acumulador
         parteDerecha = SD[no_terminal][terminal]          #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
-        #print(parteDerecha)
+        #print(parteDerecha) acumulador
+        producciones.extend(parteDerecha)
         procesar(parteDerecha)
         
     
@@ -66,6 +69,8 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
 parser((['int','2'],['id','i'],[',',','],['id','j'],['#','#']))
 
 parser((['int','2'],['id','i'],['#','#']))
+
+parser((['float', 4,33],['id','a'],[",",','],['id','b'],[',',','],['id','caca'],['#','#']))
 
 #parteDerecha = SD['L']['id']
 #print (parteDerecha) 
