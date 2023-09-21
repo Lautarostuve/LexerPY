@@ -164,18 +164,33 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
                 
     return principal()
 
-parser([("token_leer", "leer"),("token_id", "vauxi"),("#","#")])
-parser([('token_entonces', 'entonces'), ('token_si', 'si'), ('token_num', '4'), ('token_opmult', '/'), ('token_num', '5'), ('token_entonces', 'entonces'), ('token_id', 'variable'), ('token_finsi', 'finsi')])
+##En esta primera prueba el parser deberia aceptarnos el leer variablex
+print("leer variablex")
+tokens=lexer("leer variablex")
+tokens.extend([('#','#')])
+parser(tokens)
+##Esta cadena no pertenece al lenguaje
+print("entonces si 4 / 5 entonces variable finsi")
+tokens=lexer("entonces si 4 / 5 entonces variable finsi")
+tokens.extend([('#','#')])
+parser(tokens)
+
+print("leer variable;vauxi equal 5")
 tokens=lexer("leer variable;vauxi equal 5") 
 tokens.extend([('#','#')])
 parser(tokens)
+
+print ("si 6>7 entonces leer id finsi")
 tokens=lexer("si 6>7 entonces leer id finsi")
 tokens.extend([('#','#')])
-print (tokens)
 parser(tokens)
+
+print("repetir leer vauxi hasta vauxi > variableprima")
 tokens=lexer("repetir leer vauxi hasta vauxi > variableprima")
 tokens.extend([('#','#')])
 parser(tokens)
+
+print ("func variable ( variable ; variable) repetir variable equal 3 hasta 4 finfunc")
 tokens=lexer("func variable ( variable ; variable) repetir variable equal 3 hasta 4 finfunc")
 tokens.extend([('#','#')])
 print(tokens)
