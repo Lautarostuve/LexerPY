@@ -24,7 +24,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
         'error': False,     
     }
     producciones = []
-    parteIzquierda = []
+    
     
     def principal():
         pni('D')
