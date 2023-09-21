@@ -193,7 +193,6 @@ parser(tokens)
 print ("func variable ( variable ; variable) repetir variable equal 3 hasta 4 finfunc")
 tokens=lexer("func variable ( variable ; variable) repetir variable equal 3 hasta 4 finfunc")
 tokens.extend([('#','#')])
-print(tokens)
 parser(tokens)
 
 print("mostrar 3 * 2 > 5 * 6")
