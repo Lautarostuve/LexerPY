@@ -346,7 +346,7 @@ def automataequal(lexema):
     else:
         return ESTADO_NO_FINAL
     
-def automataparentesis1(lexema):
+def automataparentesis2(lexema):
     estado = 0
     estados_finales = [1]
     for caracter in lexema:     
@@ -363,7 +363,7 @@ def automataparentesis1(lexema):
     else:
         return ESTADO_NO_FINAL
 
-def automataparentesis2(lexema):
+def automataparentesis1(lexema):
     estado = 0
     estados_finales = [1]
     for caracter in lexema:     

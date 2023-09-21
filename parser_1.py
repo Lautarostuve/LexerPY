@@ -36,7 +36,7 @@ SD = {
                  "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
                 "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
     
-    'SentenciaSiPrima' : {"token_si" : [], "token_sino" : ["token_sino", 'ListaSentencias, "token_finsi'], "token_entonces" : [], "token_finsi" : ["token_finsi"], "token_finfunc" : [],
+    'SentenciaSiPrima' : {"token_si" : [], "token_sino" : ["token_sino", 'ListaSentencias', "token_finsi"], "token_entonces" : [], "token_finsi" : ["token_finsi"], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
                  "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
                 "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
@@ -79,7 +79,7 @@ SD = {
     'ListaParPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
                  "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : ["token_puntoycoma", "token_id" 'ListaParPrima'] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+                "token_puntoycoma" : ["token_puntoycoma", "token_id" ,'ListaParPrima'] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
     
     'Expresion' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
@@ -88,7 +88,7 @@ SD = {
     
     'ExpresionPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
                  "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ['Termino', 'Expresion2Prima'], "token_num" : ['Termino', 'Expresion2Prima'], "token_oprel" : ["token_oprel", 'Expresion2'], "token_parentesis1" : [], "token_parentesis2" : [],
+                 "token_id" : [], "token_num" : [], "token_oprel" : ["token_oprel", 'Expresion2'], "token_parentesis1" : [], "token_parentesis2" : [],
                 "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
     
     'Expresion2' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
@@ -124,7 +124,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
         'posicion_indice': 0,
         'error': False,     
     }
-    
+    producciones = []
     def principal():
         pni('Program')
         token_actual = datos_parser['tokens'][datos_parser['posicion_indice']][0]
@@ -133,10 +133,16 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             return False
         else:
             print ('la cadena pertenece al lenguaje')
+            producciones.pop()
+            print (producciones)
 
     def pni(no_terminal):
         terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
         parteDerecha = SD [no_terminal][terminal]           #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
+        producciones.extend([no_terminal])
+        producciones.extend(['->'])
+        producciones.extend(parteDerecha)
+        producciones.extend(['siguienteProduccion'])
         procesar(parteDerecha)
         
     
@@ -169,4 +175,8 @@ print (tokens)
 parser(tokens)
 tokens=lexer("repetir leer vauxi hasta vauxi > variableprima")
 tokens.extend([('#','#')])
+parser(tokens)
+tokens=lexer("func variable ( variable ; variable) repetir variable equal 3 hasta 4 finfunc")
+tokens.extend([('#','#')])
+print(tokens)
 parser(tokens)
