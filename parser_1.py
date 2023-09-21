@@ -180,3 +180,23 @@ tokens=lexer("func variable ( variable ; variable) repetir variable equal 3 hast
 tokens.extend([('#','#')])
 print(tokens)
 parser(tokens)
+
+print("mostrar 3 * 2 > 5 * 6")
+tokens=lexer("mostrar 3 * 2 > 5 * 6")
+tokens.extend([('#','#')])
+parser(tokens)
+
+print("si 3 > 4")
+tokens=lexer("si 3 > 4")
+tokens.extend([('#','#')])
+parser(tokens)
+
+print("id equal 3")
+tokens=lexer("id equal 3")
+tokens.extend([('#','#')])
+parser(tokens)
+
+print("si 4 > 3 entonces repetir leer id hasta 3 sino mostrar 4 finsi")         
+tokens=lexer("si 4 > 3 entonces repetir leer id hasta 3 sino mostrar 4 finsi")
+tokens.extend([('#','#')])
+parser(tokens)
