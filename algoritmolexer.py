@@ -509,7 +509,7 @@ def lexer(codigo_fuente):
             tokens.append(token1)
     return tokens
 
-prueba1 = "entonces si 4 / 5 entonces variable finsi" #Por mas que la sintaxis sea incorrecta el lexer debe darnos los tokens de este codigo, pues es en realidad el parcer el encargado de evaluar la sintaxis
+"""prueba1 = "entonces si 4 / 5 entonces variable finsi" #Por mas que la sintaxis sea incorrecta el lexer debe darnos los tokens de este codigo, pues es en realidad el parcer el encargado de evaluar la sintaxis
 tokens = lexer(prueba1)
 print("prueba1",tokens)
 prueba2 = "si 123 == 456 entonces variable func finfunc + - > < * / leer leer5 repetir hasta finsi equal" #En este buscamos probar que todos los automatas que marcan tokens funcionan
@@ -538,4 +538,4 @@ tokens = lexer(prueba9)
 print("prueba9",tokens)
 prueba10 = "si 500*800==0 entonces variable equal 6"
 tokens = lexer(prueba10)
-print("prueba10",tokens)
+print("prueba10",tokens)  """
