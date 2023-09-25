@@ -10,111 +10,67 @@ terminales = ["token_si","token_sino","token_entonces","token_finsi","token_finf
               "token_equal","token_id","token_num","token_oprel","token_parentesis1",
               "token_parentesis2","token_puntoycoma","token_opsuma","token_opmult",'#']
 SD = { 
-    'Program' : {"token_si" : ['ListaSentencias'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                "token_func" : ['ListaSentencias'], "token_repetir" : ['ListaSentencias'], "token_hasta" : [], "token_leer" : ['ListaSentencias'],
-                "token_mostrar" : ['ListaSentencias'], "token_equal" : [], "token_id" : ['ListaSentencias'], "token_num" : [], "token_oprel" : [],
-                "token_parentesis1" : [], "token_parentesis2" : [],"token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Program' : {"token_si" : ['ListaSentencias'],"token_func" : ['ListaSentencias'],
+                 "token_repetir" : ['ListaSentencias'], "token_leer" : ['ListaSentencias'],
+                "token_mostrar" : ['ListaSentencias'],"token_id" : ['ListaSentencias']},
+                 
     
-    'ListaSentencias' : {"token_si" : ['Sentencia','ListaSentenciasPrima'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : ['Sentencia','ListaSentenciasPrima'], "token_repetir" : ['Sentencia','ListaSentenciasPrima'], "token_hasta" : [],
-                  "token_leer" : ['Sentencia','ListaSentenciasPrima'], "token_mostrar" : ['Sentencia','ListaSentenciasPrima'], "token_equal" : [],
-                 "token_id" : ['Sentencia','ListaSentenciasPrima'], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'ListaSentencias' : {"token_si" : ['Sentencia','ListaSentenciasPrima'],
+                 "token_func" : ['Sentencia','ListaSentenciasPrima'], "token_repetir" : ['Sentencia','ListaSentenciasPrima'],
+                  "token_leer" : ['Sentencia','ListaSentenciasPrima'], "token_mostrar" : ['Sentencia','ListaSentenciasPrima'],
+                 "token_id" : ['Sentencia','ListaSentenciasPrima']},
     
-    'ListaSentenciasPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [''],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : ["token_puntoycoma", 'Sentencia', 'ListaSentenciasPrima'] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'ListaSentenciasPrima' : { "token_sino" : [], "token_finsi" : [], "token_finfunc" : [''],
+                 "token_hasta" : [], "token_puntoycoma" : ["token_puntoycoma", 'Sentencia', 'ListaSentenciasPrima'],'#':[]},
     
-    'Sentencia' : {"token_si" : ['SentenciaSi'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : ['SentenciaFun'], "token_repetir" : ['SentenciaRepetir'], "token_hasta" : [], "token_leer" : ['SentenciaLeer'], "token_mostrar" : ['SentenciaMostrar'], "token_equal" : [],
-                 "token_id" : ['SentenciaAsig'], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Sentencia' : {"token_si" : ['SentenciaSi'],"token_func" : ['SentenciaFun'], "token_repetir" : ['SentenciaRepetir'],
+                   "token_leer" : ['SentenciaLeer'], "token_mostrar" : ['SentenciaMostrar'],
+                 "token_id" : ['SentenciaAsig']},
+
     
-    'SentenciaSi' : {"token_si" : ["token_si", 'Expresion', "token_entonces", 'ListaSentencias', 'SentenciaSiPrima'], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaSi' : {"token_si" : ["token_si", 'Expresion', "token_entonces", 'ListaSentencias', 'SentenciaSiPrima']},
     
-    'SentenciaSiPrima' : {"token_si" : [], "token_sino" : ["token_sino", 'ListaSentencias', "token_finsi"], "token_entonces" : [], "token_finsi" : ["token_finsi"], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaSiPrima' : { "token_sino" : ["token_sino", 'ListaSentencias', "token_finsi"], "token_finsi" : ["token_finsi"]},
     
-    'SentenciaRepetir' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : ["token_repetir", 'ListaSentencias', "token_hasta", 'Expresion'], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaRepetir' : { "token_repetir" : ["token_repetir", 'ListaSentencias', "token_hasta", 'Expresion']},
     
-    'SentenciaAsig' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ["token_id", "token_equal", 'Expresion'], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaAsig' : {"token_id" : ["token_id", "token_equal", 'Expresion']},
       
-    'SentenciaLeer' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : ["token_leer", "token_id"], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaLeer' : { "token_leer" : ["token_leer", "token_id"]},
        
-    'SentenciaMostrar' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : ["token_mostrar", 'Expresion'], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaMostrar' : {"token_mostrar" : ["token_mostrar", 'Expresion']},
     
-    'SentenciaFun' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : ["token_func", 'Proc', "token_finfunc"], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'SentenciaFun' : {"token_func" : ["token_func", 'Proc', "token_finfunc"]},
     
-    'Proc' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ["token_id", "token_parentesis1", 'ListaPar', "token_parentesis2", 'ListaSentencias'], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Proc' : {"token_id" : ["token_id", "token_parentesis1", 'ListaPar', "token_parentesis2", 'ListaSentencias']},
     
-    'ListaPar' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ["token_id", 'ListaParPrima'], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [], "lambda" : [],'#':[]},
+    'ListaPar' : {"token_id" : ["token_id", 'ListaParPrima']},
     
-    'ListaParPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : ["token_puntoycoma", "token_id" ,'ListaParPrima'] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'ListaParPrima' : {"token_parentesis2" : [],"token_puntoycoma" : ["token_puntoycoma", "token_id" ,'ListaParPrima']},
     
-    'Expresion' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ['Expresion2', 'ExpresionPrima'], "token_num" : ['Expresion2', 'ExpresionPrima'], "token_oprel" : [], "token_parentesis1" : ['Expresion2', 'ExpresionPrima'], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Expresion' : {"token_id" : ['Expresion2', 'ExpresionPrima'], "token_num" : ['Expresion2', 'ExpresionPrima'],
+                 "token_parentesis1" : ['Expresion2', 'ExpresionPrima']},
     
-    'ExpresionPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : ["token_oprel", 'Expresion2'], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'ExpresionPrima' : {"token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
+                   "token_hasta" : [], "token_oprel" : ["token_oprel", 'Expresion2'], "token_parentesis2" : [],
+                "token_puntoycoma" : [],'#':[]},
     
-    'Expresion2' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ['Termino', 'Expresion2Prima'], "token_num" : ['Termino', 'Expresion2Prima'], "token_oprel" : [], "token_parentesis1" : ['Termino', 'Expresion2Prima'], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[] },
+    'Expresion2' : {"token_id" : ['Termino', 'Expresion2Prima'], "token_num" : ['Termino', 'Expresion2Prima'],
+                    "token_parentesis1" : ['Termino', 'Expresion2Prima']},
     
-    'Expresion2Prima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : ["token_opsuma", 'Termino', 'Expresion2Prima'], "token_opmult" : [],'#':[] },
+    'Expresion2Prima' : {"token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
+                "token_hasta" : [], "token_oprel" : [], "token_parentesis2" : [],
+                "token_puntoycoma" : [] , "token_opsuma" : ["token_opsuma", 'Termino', 'Expresion2Prima'],'#':[] },
     
-    'Factor' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ["token_id"], "token_num" : ["token_num"], "token_oprel" : [], "token_parentesis1" : ["token_parentesis1", 'Expresion', "token_parentesis2"], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Factor' : {"token_id" : ["token_id"], "token_num" : ["token_num"],
+                "token_parentesis1" : ["token_parentesis1", 'Expresion', "token_parentesis2"]},
     
-    'Termino' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : ['Factor', 'TerminoPrima'], "token_num" : ['Factor', 'TerminoPrima'], "token_oprel" : [], "token_parentesis1" : ['Factor', 'TerminoPrima'], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : [],'#':[]},
+    'Termino' : {"token_id" : ['Factor', 'TerminoPrima'], "token_num" : ['Factor', 'TerminoPrima'],
+                 "token_parentesis1" : ['Factor', 'TerminoPrima']},
     
-    'TerminoPrima' : {"token_si" : [], "token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
-                 "token_func" : [], "token_repetir" : [], "token_hasta" : [], "token_leer" : [], "token_mostrar" : [], "token_equal" : [],
-                 "token_id" : [], "token_num" : [], "token_oprel" : [], "token_parentesis1" : [], "token_parentesis2" : [],
-                "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : ["token_opmult", 'Factor', 'TerminoPrima'],'#':[]}
+    'TerminoPrima' : {"token_sino" : [], "token_entonces" : [], "token_finsi" : [], "token_finfunc" : [],
+                        "token_hasta" : [],"token_oprel" : [],"token_parentesis2" : [],
+                        "token_puntoycoma" : [] , "token_opsuma" : [], "token_opmult" : ["token_opmult", 'Factor', 'TerminoPrima'],'#':[]}
             
                         
 }
@@ -137,13 +93,15 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             print (producciones)
 
     def pni(no_terminal):
-        terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
-        parteDerecha = SD [no_terminal][terminal]           #no terminal es el tope de la pila, terminal es donde apunta el puntero en la cadena
-        producciones.extend([no_terminal])
-        producciones.extend(['->'])
-        producciones.extend(parteDerecha)
-        producciones.extend(['siguienteProduccion'])
-        procesar(parteDerecha)
+        if terminal in SD[no_terminal].keys():
+            parteDerecha = SD [no_terminal][terminal] 
+            producciones.extend([no_terminal])
+            producciones.extend(['->'])
+            producciones.extend(parteDerecha)
+            producciones.extend(['siguienteProduccion'])
+            procesar(parteDerecha)
+        else:
+            print('la cadena no pertence')
         
     
     def procesar(parteDerecha):  #ingresa una produccion
