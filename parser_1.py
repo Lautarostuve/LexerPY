@@ -93,6 +93,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             print (producciones)
 
     def pni(no_terminal):
+        terminal = datos_parser['tokens'][datos_parser['posicion_indice']][0]
         if terminal in SD[no_terminal].keys():
             parteDerecha = SD [no_terminal][terminal] 
             producciones.extend([no_terminal])
@@ -101,8 +102,7 @@ def parser(lista_tokens):                   #la lista de tokens viene del lexer
             producciones.extend(['siguienteProduccion'])
             procesar(parteDerecha)
         else:
-            print('la cadena no pertence')
-        
+            print('la cadena no pertence al lenguaje')
     
     def procesar(parteDerecha):  #ingresa una produccion
         for simbolo in parteDerecha:
